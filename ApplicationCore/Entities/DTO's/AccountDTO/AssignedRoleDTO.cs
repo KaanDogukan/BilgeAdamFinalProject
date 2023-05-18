@@ -11,6 +11,7 @@ namespace ApplicationCore.Entities.DTO_s.AccountDTO
     public class AssignedRoleDTO
     {
         public IdentityRole Role { get; set; }
+        //asdasd
 
         public IEnumerable<ApplicationUser>? HasRole { get; set; }
         public IEnumerable<ApplicationUser>? HasNotRole { get; set; }
