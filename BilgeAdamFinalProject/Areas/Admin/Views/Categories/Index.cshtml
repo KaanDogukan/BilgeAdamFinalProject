@@ -1,0 +1,60 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+@model List<GetCategoryVM>
+@*@{
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}*@
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-header">
+            <h1>Kategori Listesi</h1>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered mt-3 p-2">
+                <tr>
+                    <th>Id</th>
+                    <th>Kategori Adı</th>
+                    <th>Eklenme Tarihi</th>
+                    <th>Güncellenme Tarihi</th>
+                    <th>Güncelle</th>
+                    <th>Sil</th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Name</td>
+                        <td>@item.CreatedDate.ToShortDateString()</td>
+                        @{
+                            if (item.UpdateDate is not null)
+                            {
+                                <td>@item.UpdateDate</td>
+                            }
+                            else
+                            {
+                                <td>-</td>
+                            }
+                        }
+                        <td>
+                            <a asp-controller="Categories" asp-action="UpdateCategory" asp-area="Admin" asp-route-id="@item.Id" class="btn btn-outline-warning">Güncelle</a>
+                        </td>
+                        <td>
+                            @*                            @{
+                        var actionName = "DeleteMovie";
+                        var controllerName = "Movies";
+                        }
+                        <partial name="_DeleteDialogPartial" model="new DeletePartialVM { Id = item.Id, ActionName = actionName, ControllerName = controllerName};" />*@
+                            <a class="btn btn-outline-success" asp-controller="Movies" asp-action="DeleteMovie" asp-route-id="@item.Id">Sil</a>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+        <div class="card-footer">
+            <div class="p-2">
+                <a class="btn d-block btn-sm btn-outline-info" asp-controller="Categories" asp-action="AddCategory" asp-area="Admin">Yeni Kategori Ekle</a>
+            </div>
+        </div>
+    </div>
+</div>

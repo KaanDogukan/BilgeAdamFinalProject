@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "AddCategory";
+}
+@model AddCategoryDTO
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <form asp-action="AddCategory" class="w-100">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 style="margin-left:10px">Kategori Ekle</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-4">
+                            <label asp-for="Name" class="form-label">Adı</label>
+                            <input asp-for="Name" class="form-control" placeholder="Ad Giriniz" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="float-end">
+                            <button type="submit" class="btn btn-outline-primary mb-4">Ekle</button>
+                            <a asp-controller="Categories" asp-action="Index" asp-area="Admin" class="btn btn-outline-warning mb-4">Geri Dön</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

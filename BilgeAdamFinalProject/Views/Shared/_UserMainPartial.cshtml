@@ -1,0 +1,29 @@
+﻿@if (User?.Identity?.IsAuthenticated ?? false)
+{
+    <div class="d-flex">
+        @if (User.IsInRole("Admin"))
+        {
+            <div style="margin-right:5px">
+                <a class="btn btn-outline-primary" asp-area="Admin" asp-controller="Dashboard" asp-action="Index">Admin Paneli</a>
+            </div>
+
+        }
+        <div style="margin-right:5px">
+            <a class="btn btn-outline-primary" asp-controller="Accounts" asp-action="EditUser">Bilgileri Düzenle</a>
+        </div>
+        <div>
+            <a class="btn btn-outline-danger" asp-controller="Accounts" asp-action="LogOut">Çıkış Yap</a>
+        </div>
+    </div>
+}
+else
+{
+    <div class="d-flex">
+        <div style="margin-right:5px">
+            <a class="btn btn-outline-info" asp-controller="Accounts" asp-action="Register">Kayıt Ol</a>
+        </div>
+        <div>
+            <a class="btn btn-outline-success" asp-controller="Accounts" asp-action="LogIn">Giriş Yap</a>
+        </div>
+    </div>
+}

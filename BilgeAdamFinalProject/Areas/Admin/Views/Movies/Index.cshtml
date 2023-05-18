@@ -1,0 +1,73 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+@model List<GetMovieVM>
+
+<div class="">
+    <div class="card">
+        <div class="card-header">
+            <h1>Film Listesi</h1>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered table-responsive table-sm mt-3 p-2">
+                <tr>
+                    <th>Id</th>
+                    <th>Film Adı</th>
+                    <th>Film Açıklaması</th>
+                    <th>Yıl</th>
+                    <th>Kategoriler</th>
+                    <th>Yönetmen Adı</th>
+                    <th>Afiş</th>
+                    <th>Eklenme Tarihi</th>
+                    <th>Güncellenme Tarihi</th>
+                    <th>Güncelle</th>
+                    <th>Sil</th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Name</td>
+                        <td>@item.Description</td>
+                        <td>@item.Year</td>
+                        <td>@string.Join(',',item.Categories)</td>
+                        <td>@item.DirectorName</td>
+                        <td>
+                            <img src="/images/movies/@item.Name/@item.Image" width="100" />
+                        </td>
+                        <td>@item.CreatedDate</td>
+                        @{
+                            if (item.UpdateDate is not null)
+                            {
+                                <td>@item.UpdateDate</td>
+                            }
+                            else
+                            {
+                                <td>-</td>
+                            }
+                        }
+                        <td>
+                            <a asp-controller="Movies" asp-action="UpdateMovie" asp-area="Admin" asp-route-id="@item.Id" class="btn btn-outline-warning">Güncelle</a>
+                        </td>
+                        <td>
+                            @*  @{
+                        var actionName = "DeleteMovie";
+                        var controllerName = "Movies";
+                        }
+                        <partial name="_DeleteDiaolgPartial" model="new DeletePartialVM { Id = item.Id, ActionName = actionName, ControllerName = controllerName};" />*@
+                            <a class="btn btn-outline-success" asp-controller="Movies" asp-action="DeleteMovie" asp-route-id="@item.Id" asp-area="Admin">
+                                Sil
+                            </a>
+                        </td>
+
+                    </tr>
+                }
+            </table>
+        </div>
+        <div class="card-footer">
+            <div class="p-2">
+                <a class="btn d-block btn-sm btn-outline-info" asp-controller="Movies" asp-action="AddMovie" asp-area="Admin">Yeni Film Ekle</a>
+            </div>
+        </div>
+    </div>
+</div>

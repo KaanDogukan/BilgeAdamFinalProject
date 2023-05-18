@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "UpdateDirector";
+}
+@model UpdateDirectorDTO
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <form asp-action="UpdateDirector" class="w-100">
+                <input type="hidden" asp-for="Id"/>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 style="margin-left:10px">Yönetmen Güncelle</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-4">
+                            <label asp-for="FirstName" class="form-label">Adı</label>
+                            <input asp-for="FirstName" class="form-control" placeholder="Ad Giriniz" />
+                            <span asp-validation-for="FirstName" class="text-danger"></span>
+                        </div>
+                        <div class="mb-4">
+                            <label asp-for="LastName" class="form-label">Soy Adı</label>
+                            <input asp-for="LastName" class="form-control" placeholder="Soy Ad Giriniz" />
+                            <span asp-validation-for="LastName" class="text-danger"></span>
+                        </div>
+                        <div class="mb-4">
+                            <label asp-for="BirthDate" class="form-label">Doğum Tarihi</label>
+                            <input asp-for="BirthDate" type="date" class="form-control" />
+                            <span asp-validation-for="BirthDate" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="float-end">
+                            <button type="submit" class="btn btn-outline-primary mb-4">Güncelle</button>
+                            <a asp-controller="Directors" asp-action="Index" asp-area="Admin" class="btn btn-outline-warning mb-4">Geri Dön</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
